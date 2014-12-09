@@ -13,6 +13,7 @@ ansible-playbook -i inventory.ansible ./ansible/django_routines.yaml -l developm
 where inventory.ansible looks like:
 
 [development]
+
 somehost.cloudapp.net    ansible_ssh_user=azureuser  settings_file=development
 
 Don't forget to setup authentication with ssh-copy-id!
