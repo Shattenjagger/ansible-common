@@ -6,9 +6,7 @@ Common ansible scripts to use with Django-projects
 
 Run with:
 
-./ansible/parse_current_settings.py development
-ansible-playbook -i inventory.ansible ./ansible/deployment.yaml -l development
-ansible-playbook -i inventory.ansible ./ansible/django_routines.yaml -l development
+./ansible/deploy_server.sh development
 
 where inventory.ansible looks like:
 
