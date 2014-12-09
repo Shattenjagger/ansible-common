@@ -1,0 +1,29 @@
+---
+
+- name: Installing PostgreSQL
+  apt: pkg={{ item }} state=present
+  with_items:
+    - postgresql-9.3
+  when: pg_host == "localhost"
+  notify:
+    - restart postgresql
+
+- name: Installing PostgreSQL additional modules
+  apt: pkg={{ item }} state=present
+  with_items:
+    - libpq-dev
+  notify:
+    - restart postgresql
+
+- name: make sure psycopg2 is installed
+  pip: name=psycopg2
+
+- name: Creating the user
+  sudo_user: postgres
+  postgresql_user: name="{{ pg_user }}" password="{{ pg_passwd }}" role_attr_flags=CREATEDB,NOSUPERUSER
+  when: pg_host == "localhost"
+
+- name: Creating the db
+  sudo_user: postgres
+  postgresql_db: name="{{ pg_db }}" owner="{{ pg_user }}"
+  when: pg_host == "localhost"

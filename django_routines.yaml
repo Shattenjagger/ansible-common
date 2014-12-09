@@ -1,0 +1,36 @@
+---
+
+- hosts: all
+
+  sudo: yes
+
+  vars:
+    host: "{{ inventory_hostname }}"
+
+  tasks:
+
+    - name: Collecting static
+      django_manage:
+        app_path=/srv/{{ host }}/source/
+        command=collectstatic
+        settings="diskado.settings.{{ settings_file }}"
+        virtualenv=/srv/{{ host }}/env/
+
+    - name: Migrating DB
+      django_manage:
+        app_path=/srv/{{ host }}/source/
+        command=migrate
+        settings="diskado.settings.{{ settings_file }}"
+        virtualenv=/srv/{{ host }}/env/
+      notify:
+        - restart site
+
+    - name: Testing
+      django_manage:
+        app_path=/srv/{{ host }}/source/
+        command=test
+        settings="diskado.settings.{{ settings_file }}"
+        virtualenv=/srv/{{ host }}/env/
+
+  handlers:
+    - include: ./includes/handlers.yaml

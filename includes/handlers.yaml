@@ -1,0 +1,16 @@
+---
+
+- name: restart nginx
+  service: name=nginx state=restarted
+
+- name: reload nginx
+  service: name=nginx state=reloaded
+
+- name: restart supervisor
+  service: name=supervisor state=restarted
+
+- name: restart site
+  supervisorctl: name={{ host }} state=restarted
+
+- name: restart postgresql
+  service: name=postgresql state=restarted

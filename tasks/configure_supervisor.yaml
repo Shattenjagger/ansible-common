@@ -1,0 +1,18 @@
+---
+
+- name: add gunicorn start script
+  template:
+    src=./templates/gunicorn_start.sh.j2
+    dest=/srv/{{ host }}/gunicorn_start.sh
+  notify:
+    - restart supervisor
+
+- name: chmod gunicorn start script
+  file: path=/srv/{{ host }}/gunicorn_start.sh owner=www-data group=www-data mode=0774
+
+- name: add supervisor config
+  template:
+    src=./templates/supervisor.conf.j2
+    dest=/etc/supervisor/conf.d/{{ host }}.conf
+  notify:
+    - restart supervisor

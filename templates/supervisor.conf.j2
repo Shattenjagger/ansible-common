@@ -1,0 +1,6 @@
+[program:{{ host }}]
+command = /srv/{{ host }}/gunicorn_start.sh "{{ settings_file }}"
+user = www-data
+stdout_logfile = /srv/{{ host }}/logs/gunicorn_supervisor.log
+redirect_stderr = true
+environment=LANG=en_US.UTF-8,LC_ALL=en_US.UTF-8
