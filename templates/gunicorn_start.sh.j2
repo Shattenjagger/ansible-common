@@ -6,7 +6,7 @@ SOCKFILE=/srv/{{ host }}/run/gunicorn.sock  # we will communicte using this unix
 USER=www-data                                        # the user to run as
 GROUP=www-data                                     # the group to run as
 NUM_WORKERS=3                                     # how many worker processes should Gunicorn spawn
-DJANGO_SETTINGS_MODULE="diskado.settings.$1"             # which settings file should Django use
+DJANGO_SETTINGS_MODULE="{{ django_app }}.settings.$1"             # which settings file should Django use
 DJANGO_WSGI_MODULE=diskado.wsgi                     # WSGI module name
 
 echo "Starting $NAME as `whoami`"
