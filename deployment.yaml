@@ -46,7 +46,7 @@
         - restart site
 
     - name: Applying owner & group paramaters to virtualenv
-      file: path=/srv/{{ host }}/env/ recursive=yes owner=www-data group=www-data
+      file: path=/srv/{{ host }}/env/ recurse=yes owner=www-data group=www-data
 
   handlers:
     - include: ./includes/handlers.yaml
