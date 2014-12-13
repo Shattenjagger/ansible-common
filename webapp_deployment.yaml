@@ -7,10 +7,6 @@
   vars:
     host: "{{ inventory_hostname }}"
     nginx_conf: "./templates/nginx_webapp.conf.j2"
-    pg_host: ""
-    pg_user: ""
-    pg_passwd: ""
-    pg_db: ""
 
   vars_files:
     - ./includes/package_list.yaml
