@@ -1,0 +1,22 @@
+server {
+
+    listen 80;
+    server_name {{ host }};
+
+    client_max_body_size 4G;
+
+    access_log /srv/{{ host }}/logs/nginx-access.log;
+    error_log /srv/{{ host }}/logs/nginx-error.log;
+
+    location / {
+        gzip_static on;
+        root /srv/{{ host }}/source;
+        index index.html index.htm;
+    }
+
+    # Error pages
+    # error_page 500 502 503 504 /500.html;
+    #location = /500.html {
+    #    root /webapps/hello_django/static/;
+    #}
+}

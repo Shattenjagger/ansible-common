@@ -1,0 +1,34 @@
+---
+
+- hosts: all
+
+  sudo: yes
+
+  vars:
+    host: "{{ inventory_hostname }}"
+    nginx_conf: "./templates/nginx_webapp.conf.j2"
+    pg_host: ""
+    pg_user: ""
+    pg_passwd: ""
+    pg_db: ""
+
+  vars_files:
+    - ./includes/package_list.yaml
+    - ./includes/pg_vars.yaml
+
+  tasks:
+
+    - include: ./tasks/install_requirements.yaml
+
+    - include: ./tasks/create_webapp_directories.yaml
+
+    - include: ./tasks/configure_nginx.yaml
+
+    - name: Synchronizing files
+      synchronize: src=./../webapp dest=/srv/{{ host }}/source/ delete=yes recursive=yes compress=yes
+
+    - name: Applying owner & group parameters
+      file: path=/srv/{{ host }}/source/ recurse=yes owner=www-data group=www-data
+
+  handlers:
+    - include: ./includes/handlers.yaml

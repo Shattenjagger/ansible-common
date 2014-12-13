@@ -1,0 +1,10 @@
+---
+
+- name: create root directory
+  file: path=/srv/{{ host }} owner=www-data group=www-data state=directory
+
+- name: create logs directory
+  file: path=/srv/{{ host }}/logs owner=www-data group=www-data state=directory
+
+- name: create source directory
+  file: path=/srv/{{ host }}/source owner=www-data group=www-data state=directory
