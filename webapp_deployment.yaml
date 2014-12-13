@@ -20,7 +20,7 @@
     - include: ./tasks/configure_nginx.yaml
 
     - name: Synchronizing files
-      synchronize: src=./../webapp dest=/srv/{{ host }}/source/ delete=yes recursive=yes compress=yes
+      synchronize: src=./../webapp/ dest=/srv/{{ host }}/source/ delete=yes recursive=yes compress=yes
 
     - name: Applying owner & group parameters
       file: path=/srv/{{ host }}/source/ recurse=yes owner=www-data group=www-data
