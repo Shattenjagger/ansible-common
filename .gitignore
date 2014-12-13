@@ -55,5 +55,3 @@ docs/_build/
 target/
 
 .idea
-
-inventory.ansible
