@@ -1,0 +1,2 @@
+[development]
+somehost.ru ansible_ssh_host=somehost.cloudapp.net ansible_ssh_user=someuser  settings_file=development
