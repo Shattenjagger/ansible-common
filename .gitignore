@@ -56,4 +56,4 @@ target/
 
 .idea
 
-inventory.ansible.example
+inventory.ansible
