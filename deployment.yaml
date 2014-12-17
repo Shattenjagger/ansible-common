@@ -26,6 +26,8 @@
 
     - include: ./tasks/configure_postgresql.yaml
 
+#    - include: ./tasks/configure_rabbitmq.yaml
+
     - include: ./tasks/create_directories.yaml
 
     - include: ./tasks/configure_nginx.yaml

@@ -10,6 +10,8 @@ def main(argv):
 
     current_dir = os.path.dirname(argv[0])
     pg_vars_file = os.path.join(current_dir, "includes", "pg_vars.yaml")
+    rabbit_vars_file = os.path.join(current_dir, "includes", "rabbit_vars.yaml")
+
 
     root_dir = os.path.abspath(os.path.join(
         current_dir,
@@ -45,12 +47,28 @@ def main(argv):
         pg_db = ""
         pg_passwd = ""
 
+
     with open(pg_vars_file, 'w') as v_file:
         v_file.write("---\n")
         v_file.write("pg_host: \"%s\"\n" % pg_host)
         v_file.write("pg_user: \"%s\"\n" % pg_user)
         v_file.write("pg_db: \"%s\"\n" % pg_db)
         v_file.write("pg_passwd: \"%s\"\n" % pg_passwd)
+
+    rabbit_vhost = re.search("RABBIT_VHOST*\s*=\s*\"([a-zA-Z0-9]+)\"\s*", lines)
+    rabbit_user = re.search("RABBIT_USER*\s*=\s*\"([a-zA-Z0-9]+)\"\s*", lines)
+    rabbit_passwd = re.search("RABBIT_PASSWORD*\s*=\s*\"([a-zA-Z0-9]+)\"\s*", lines)
+
+    rabbit_vhost = "defaultvhost" if rabbit_vhost is None else rabbit_vhost.group(1)
+    rabbit_user = "guest" if rabbit_user is None else rabbit_user.group(1)
+    rabbit_passwd = "guest" if rabbit_passwd is None else rabbit_passwd.group(1)
+
+    with open(rabbit_vars_file, 'w') as v_file:
+        v_file.write("---\n")
+        v_file.write("rabbit_vhost: \"%s\"\n" % rabbit_vhost)
+        v_file.write("rabbit_user: \"%s\"\n" % rabbit_user)
+        v_file.write("rabbit_passwd: \"%s\"\n" % rabbit_passwd)
+
 
 
 if __name__ == "__main__":
