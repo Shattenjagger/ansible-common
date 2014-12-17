@@ -1,2 +1,17 @@
 ---
 
+- name: add RabbitMQ vhost
+  rabbitmq_vhost:
+    name=/{{ rabbit_vhost }}
+    state=present
+
+- name: add RabbitMQ user
+  rabbitmq_user:
+    user={{ rabbit_user }}
+    password={{ rabbit_passwd }}
+    force=yes
+    vhost=/{{ rabbit_vhost }}
+    configure_priv=.*
+    read_priv=.*
+    write_priv=.*
+    state=present
