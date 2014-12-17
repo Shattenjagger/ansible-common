@@ -8,3 +8,4 @@ package_list:
   - python-dev
   - memcached
   - supervisor
+  - rabbitmq-server
