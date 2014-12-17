@@ -1,6 +1,6 @@
 #!/bin/bash
 
-NAME="diskado"                                  # Name of the application
+NAME="{{ django_app }}"                                  # Name of the application
 DJANGODIR=/srv/{{ host }}/source             # Django project directory
 SOCKFILE=/srv/{{ host }}/run/gunicorn.sock  # we will communicte using this unix socket
 USER=www-data                                        # the user to run as
