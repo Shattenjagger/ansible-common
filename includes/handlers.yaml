@@ -12,5 +12,11 @@
 - name: restart site
   supervisorctl: name={{ host }} state=restarted
 
+- name: restart supervisor_worker
+  supervisorctl: name={{ host }}_celery state=restarted
+
+- name: restart supervisor_beat
+  supervisorctl: name={{ host }}_celery_beat state=restarted
+
 - name: restart postgresql
   service: name=postgresql state=restarted

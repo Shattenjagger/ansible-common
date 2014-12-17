@@ -39,6 +39,8 @@
       synchronize: src=./../ dest=/srv/{{ host }}/source/ delete=yes recursive=yes compress=yes
       notify:
         - restart site
+        - restart supervisor_worker
+        - restart supervisor_beat
 
     - name: Applying owner & group parameters
       file: path=/srv/{{ host }}/source/ recurse=yes owner=www-data group=www-data
@@ -47,6 +49,8 @@
       pip: virtualenv=/srv/{{ host }}/env requirements=/srv/{{ host }}/source/requirements.txt
       notify:
         - restart site
+        - restart supervisor_worker
+        - restart supervisor_beat
 
     - name: Applying owner & group paramaters to virtualenv
       file: path=/srv/{{ host }}/env/ recurse=yes owner=www-data group=www-data
