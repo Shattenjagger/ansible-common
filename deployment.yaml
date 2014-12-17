@@ -51,5 +51,7 @@
     - name: Applying owner & group paramaters to virtualenv
       file: path=/srv/{{ host }}/env/ recurse=yes owner=www-data group=www-data
 
+    - include: ./tasks/configure_celery.yaml
+
   handlers:
     - include: ./includes/handlers.yaml
