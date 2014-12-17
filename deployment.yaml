@@ -15,6 +15,7 @@
   vars_files:
     - ./includes/package_list.yaml
     - ./includes/pg_vars.yaml
+    - ./includes/rabbit_vars.yaml
 
   tasks:
 
@@ -26,7 +27,7 @@
 
     - include: ./tasks/configure_postgresql.yaml
 
-#    - include: ./tasks/configure_rabbitmq.yaml
+    - include: ./tasks/configure_rabbitmq.yaml
 
     - include: ./tasks/create_directories.yaml
 
