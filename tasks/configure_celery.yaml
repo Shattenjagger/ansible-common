@@ -16,3 +16,20 @@
     dest=/etc/supervisor/conf.d/{{ host }}_celery.conf
   notify:
     - restart supervisor
+
+- name: add celery beat start script
+  template:
+    src=./templates/celery_beat_start.sh.j2
+    dest=/srv/{{ host }}/celery_beat_start.sh
+  notify:
+    - restart supervisor
+
+- name: chmod celery beat start script
+  file: path=/srv/{{ host }}/celery_beat_start.sh owner=www-data group=www-data mode=0774
+
+- name: add supervisor config
+  template:
+    src=./templates/supervisor_celery_beat.conf.j2
+    dest=/etc/supervisor/conf.d/{{ host }}_celery_beat.conf
+  notify:
+    - restart supervisor
