@@ -19,4 +19,4 @@ export PYTHONPATH=$DJANGODIR:$PYTHONPATH
 RUNDIR=$(dirname $PIDFILE)
 test -d $RUNDIR || mkdir -p $RUNDIR
 
-exec ../env/bin/celery worker --app={{ django_app }} --pidfile=$PIDFILE --loglevel=INFO
+exec ../env/bin/celery worker --app={{ django_app }} --pidfile=$PIDFILE --loglevel=INFO --autoscale=10,3
