@@ -45,6 +45,9 @@
     - name: Applying owner & group parameters
       file: path=/srv/{{ host }}/source/ recurse=yes owner=www-data group=www-data
 
+    - name: install pyodbc
+      easy_install: name=pyodbc virtualenv=/srv/{{ host }}/env
+
     - name: Installing requirements
       pip: virtualenv=/srv/{{ host }}/env requirements=/srv/{{ host }}/source/requirements.txt
       notify:

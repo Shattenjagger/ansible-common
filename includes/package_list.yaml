@@ -9,3 +9,4 @@ package_list:
   - memcached
   - supervisor
   - rabbitmq-server
+  - unixodbc-dev
