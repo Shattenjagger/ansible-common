@@ -12,9 +12,7 @@ server {
         gzip_static on;
         root /srv/{{ host }}/source;
         index index.html index.htm;
-        if (!-e $request_filename){
-            rewrite ^(.*)$ /index.html break;
-        }
+        try_files $uri /index.html;
     }
 
     # Error pages
