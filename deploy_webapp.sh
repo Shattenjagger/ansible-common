@@ -1,6 +1,6 @@
 #!/bin/sh
 
-echo "Starting build"
+echo "Starting Web app build"
 
 BASEDIR=$(dirname $0)
 
