@@ -1,0 +1,64 @@
+---
+
+- hosts: all
+
+  sudo: yes
+
+  vars:
+    host: "{{ inventory_hostname }}"
+    nginx_conf: "./templates/nginx.conf.j2"
+    pg_host: ""
+    pg_user: ""
+    pg_passwd: ""
+    pg_db: ""
+
+  vars_files:
+    - ./includes/package_list.yaml
+    - ./includes/pg_vars.yaml
+    - ./includes/rabbit_vars.yaml
+
+  tasks:
+
+#    - include: ./tasks/system_update.yaml
+
+    - include: ./tasks/install_requirements.yaml
+
+    - include: ./tasks/install_virtualenv.yaml
+
+    - include: ./tasks/configure_postgresql.yaml
+
+    - include: ./tasks/configure_rabbitmq.yaml
+
+#    - include: ./tasks/create_directories.yaml
+#
+#    - include: ./tasks/configure_nginx.yaml
+#
+#    - include: ./tasks/configure_supervisor.yaml
+#
+#    - name: Synchronizing files
+#      synchronize: src=./../ dest=/srv/{{ host }}/source/ delete=yes recursive=yes compress=yes
+#      notify:
+#        - restart site
+#        - restart supervisor_worker
+#        - restart supervisor_beat
+#
+#    - name: Applying owner & group parameters
+#      file: path=/srv/{{ host }}/source/ recurse=yes owner=www-data group=www-data
+#
+#    - name: install pyodbc
+#      easy_install: name=pyodbc virtualenv=/srv/{{ host }}/env
+#
+#    - name: Installing requirements
+#      pip: virtualenv=/srv/{{ host }}/env requirements=/srv/{{ host }}/source/requirements.txt
+#      notify:
+#        - restart site
+#        - restart supervisor_worker
+#        - restart supervisor_beat
+#
+#    - name: Applying owner & group paramaters to virtualenv
+#      file: path=/srv/{{ host }}/env/ recurse=yes owner=www-data group=www-data
+#
+#    - include: ./tasks/configure_celery.yaml
+#
+#  handlers:
+#    - include: ./includes/handlers.yaml
