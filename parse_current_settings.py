@@ -5,12 +5,14 @@ import os
 
 
 def main(argv):
+    print "Args count: %s" % len(argv)
+
     current_dir = os.path.dirname(argv[0])
     config_name = argv[1]
     app_name = argv[2]
 
     if len(argv) > 3:
-        root_dir = argv[3]
+        root_dir = os.path.abspath(argv[3])
     else:
         root_dir = os.path.abspath(os.path.join(
             current_dir,
