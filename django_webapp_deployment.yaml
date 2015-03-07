@@ -44,7 +44,7 @@
         - restart supervisor_beat
 
     - name: Synchronizing webapp files
-      synchronize: src=./../webapp/ dest=/srv/{{ host }}/webapp/ delete=yes recursive=yes compress=yes
+      synchronize: src=./../webapp/dist/ dest=/srv/{{ host }}/webapp/ delete=yes recursive=yes compress=yes
       notify:
         - restart site
         - restart supervisor_worker

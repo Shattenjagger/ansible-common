@@ -7,7 +7,6 @@ import os
 
 def main(argv):
     print "Args count: %s" % len(argv)
-    pprint(argv)
 
     current_dir = os.path.dirname(argv[0])
     config_name = argv[1]
