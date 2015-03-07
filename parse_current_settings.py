@@ -13,7 +13,7 @@ def main(argv):
     config_name = argv[1]
     app_name = argv[2]
 
-    if len(argv) > 2:
+    if len(argv) > 3:
         root_dir = os.path.abspath(argv[3])
     else:
         root_dir = os.path.abspath(os.path.join(
@@ -23,10 +23,8 @@ def main(argv):
 
     print "Root dir: %s" % root_dir
 
-
     pg_vars_file = os.path.join(current_dir, "includes", "pg_vars.yaml")
     rabbit_vars_file = os.path.join(current_dir, "includes", "rabbit_vars.yaml")
-
 
     config_file = os.path.abspath(os.path.join(
         root_dir,
