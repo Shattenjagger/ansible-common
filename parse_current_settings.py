@@ -1,4 +1,5 @@
 #!/usr/bin/python
+from pprint import pprint
 import re
 import sys
 import os
@@ -6,12 +7,13 @@ import os
 
 def main(argv):
     print "Args count: %s" % len(argv)
+    pprint(argv)
 
     current_dir = os.path.dirname(argv[0])
     config_name = argv[1]
     app_name = argv[2]
 
-    if len(argv) > 3:
+    if len(argv) > 2:
         root_dir = os.path.abspath(argv[3])
     else:
         root_dir = os.path.abspath(os.path.join(
@@ -54,7 +56,6 @@ def main(argv):
         pg_user = ""
         pg_db = ""
         pg_passwd = ""
-
 
     with open(pg_vars_file, 'w') as v_file:
         v_file.write("---\n")
