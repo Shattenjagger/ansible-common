@@ -1,2 +1,4 @@
 [development]
-somehost.ru ansible_ssh_host=somehost.cloudapp.net ansible_ssh_user=someuser  settings_file=development
+somehost-dev.ru ansible_ssh_host=somehost.cloudapp.net ansible_ssh_user=someuser  settings_file=development
+[production]
+somehost.ru ansible_ssh_host=somehost.cloudapp.net ansible_ssh_user=azureuser  settings_file=production additional_host='www.somehost.ru'

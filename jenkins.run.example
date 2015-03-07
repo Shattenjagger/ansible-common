@@ -1,0 +1,1 @@
+$WORKSPACE/ansible/deploy_server.sh settings_file app_name
