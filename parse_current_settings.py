@@ -7,16 +7,17 @@ import os
 def main(argv):
     config_name = argv[1]
     app_name = argv[2]
+    root_dir = argv[3]
 
     current_dir = os.path.dirname(argv[0])
     pg_vars_file = os.path.join(current_dir, "includes", "pg_vars.yaml")
     rabbit_vars_file = os.path.join(current_dir, "includes", "rabbit_vars.yaml")
 
-
-    root_dir = os.path.abspath(os.path.join(
-        current_dir,
-        os.pardir,
-    ))
+    if root_dir.strip() == "":
+        root_dir = os.path.abspath(os.path.join(
+            current_dir,
+            os.pardir,
+        ))
 
     config_file = os.path.abspath(os.path.join(
         root_dir,
