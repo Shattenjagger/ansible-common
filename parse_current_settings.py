@@ -5,19 +5,22 @@ import os
 
 
 def main(argv):
+    current_dir = os.path.dirname(argv[0])
     config_name = argv[1]
     app_name = argv[2]
-    root_dir = argv[3]
 
-    current_dir = os.path.dirname(argv[0])
-    pg_vars_file = os.path.join(current_dir, "includes", "pg_vars.yaml")
-    rabbit_vars_file = os.path.join(current_dir, "includes", "rabbit_vars.yaml")
-
-    if root_dir.strip() == "":
+    if len(argv) > 3:
+        root_dir = argv[3]
+    else:
         root_dir = os.path.abspath(os.path.join(
             current_dir,
             os.pardir,
         ))
+
+
+    pg_vars_file = os.path.join(current_dir, "includes", "pg_vars.yaml")
+    rabbit_vars_file = os.path.join(current_dir, "includes", "rabbit_vars.yaml")
+
 
     config_file = os.path.abspath(os.path.join(
         root_dir,
