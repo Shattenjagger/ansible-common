@@ -17,6 +17,8 @@ def main(argv):
             os.pardir,
         ))
 
+    print "Root dir: %s" % root_dir
+
 
     pg_vars_file = os.path.join(current_dir, "includes", "pg_vars.yaml")
     rabbit_vars_file = os.path.join(current_dir, "includes", "rabbit_vars.yaml")
