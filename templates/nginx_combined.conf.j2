@@ -31,9 +31,8 @@ server {
 
         proxy_redirect off;
 
-        rewrite ^/api(/.*)$ $1 last;
-
         if (!-f $request_filename) {
+            rewrite ^/api(/.*)$ $1 last;
             proxy_pass http://{{ host }}_app_server;
             break;
         }
