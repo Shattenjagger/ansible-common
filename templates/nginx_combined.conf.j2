@@ -38,7 +38,10 @@ server {
     }
 
     location / {
-        alias   /srv/{{ host }}/webapp/;
+        gzip_static on;
+        root /srv/{{ host }}/webapp;
+        index index.html index.htm;
+        try_files $uri /index.html;
     }
 
 
